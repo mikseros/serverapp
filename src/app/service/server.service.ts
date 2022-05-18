@@ -8,7 +8,7 @@ import { Server } from '../interface/server';
 @Injectable({ providedIn: 'root' })
 export class ServerService {
 
-  private readonly apiUrl = 'any';
+  private readonly apiUrl = 'http://localhost:8080';
 
   constructor(private http: HttpClient) { }
   // PROCEDURAL APPROACH:

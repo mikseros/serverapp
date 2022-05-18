@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { catchError, map, Observable, of, startWith } from 'rxjs';
 import { DataState } from './enum/data-state.enum';
 import { AppState } from './interface/app-state';
@@ -10,8 +10,11 @@ import { ServerService } from './service/server.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   appState$: Observable<AppState<CustomResponse>>;
+  readonly DataState = DataState;
+
+
   constructor(private serverService: ServerService) {}
  // reactive approach
   ngOnInit(): void {

@@ -31,7 +31,7 @@ export class AppComponent implements OnInit{
       }),
       startWith({ dataState: DataState.LOADING_STATE }),
       catchError((error: string) => {
-        return of({ dataState: DataState.ERROR_STATE, error })
+        return of({ dataState: DataState.ERROR_STATE, error });
       })
     )
   }
@@ -51,7 +51,20 @@ export class AppComponent implements OnInit{
       startWith({ dataState: DataState.LOADED_STATE, appData: this.dataSubject.value }),
       catchError((error: string) => {
         this.filterSubject.next('');
-        return of({ dataState: DataState.ERROR_STATE, error })
+        return of({ dataState: DataState.ERROR_STATE, error });
+      })
+    )
+  }
+
+  filterServers(status: Status): void {
+    this.appState$ = this.serverService.filter$(status, this.dataSubject.value)
+    .pipe(
+      map(response => {
+        return{ dataState: DataState.LOADED_STATE, appData: response }
+      }),
+      startWith({ dataState: DataState.LOADED_STATE, appData: this.dataSubject.value }),
+      catchError((error: string) => {
+        return of({ dataState: DataState.ERROR_STATE, error });
       })
     )
   }

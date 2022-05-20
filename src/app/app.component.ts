@@ -112,6 +112,7 @@ export class AppComponent implements OnInit{
   }
 
   printReport(): void {
+    // window.print(); // save as PDF
     let dataType = 'application/vnd.ms-excel.sheet.macroEnabled.12';
     let tableSelect = document.getElementById('servers');
     let tableHtml = tableSelect.outerHTML.replace(/ /g, '%20');

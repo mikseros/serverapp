@@ -31,7 +31,7 @@ export class AppComponent implements OnInit{
     .pipe(
       map(response => {
         this.dataSubject.next(response);
-        return{ dataState: DataState.LOADED_STATE, appData: response }
+        return{ dataState: DataState.LOADED_STATE, appData: { ...response, data: {servers: response.data.servers.reverse() } } }
       }),
       startWith({ dataState: DataState.LOADING_STATE }),
       catchError((error: string) => {
